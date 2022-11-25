@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>this is for test</h1>
+    <button onclick="getUser()">Get User</button>
+    <div >
+        <h5>User data :</h5>
+        <div id="content" >
+
+        </div>
+    </div>
+    <script>
+        async function getUser(){
+            const response = await fetch('http://localhost:3000/user/list', {
+                method: 'GET'
+            });
+
+            var { data } = await response.json();
+            renderData(data);
+        }
+
+        function renderData (data){
+            let template = "<ul>";
+            let eles = [];
+
+            for(let idx = 0; idx < data.length; idx++) {
+                let { name , age }  =  data[idx];
+                let el = "<li><span>" + name + '-' + age + "</span></li>";
+                eles.push(el);
+            }
+
+            template = template + eles.join("") + "</ul>";
+            document.getElementById("content").innerHTML = template;
+        }
+
+    </script>
+</body>
+</html>

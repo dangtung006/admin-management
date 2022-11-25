@@ -1,0 +1,26 @@
+POST http://localhost:3000/test
+Content-Type: application/json
+
+{
+    "test" : "test"
+}
+###
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email"    : "dangtung006@gmail.com",
+    "password" : "343434"
+}
+
+###
+GET http://localhost:3000/person?email=minhhieu006@gmail.com&password=123456
+
+###
+GET http://localhost:3000/person?nation=usa&name=John&height=170&weight=60
+
+###
+GET http://localhost:3000/user/us/10
+
+###
+GET http://localhost:3000/user/list
