@@ -10,6 +10,8 @@ const {
     setCSRFProtection
 } = require('../middlewares/app-middleware');
 
+const makeAuthenByPassport  = require("../middlewares/passport");
+
 
 module.exports = {
     'port'           : 3000,
@@ -33,5 +35,7 @@ module.exports = {
 
     'app_local'   : {
         'pagingHelper' : require("../util/paging-helper")
-    }
+    },
+
+    'passport'   : makeAuthenByPassport
 }

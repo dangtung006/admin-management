@@ -1,5 +1,6 @@
 //Global Moudle :
 const path = require('path');
+const passport = require('../middlewares/passport');
 
 // my module:
 const configHelper = require("../util/config");
@@ -18,6 +19,8 @@ const MY_APP = function(opt){
 
     const helmet      = require('helmet');
     const csrf        = require('csurf');
+    const passport    = require("passport");
+
 
     const _initSecurity = function(){
         const [
@@ -45,6 +48,10 @@ const MY_APP = function(opt){
         _bodyParser(app, express);
         _setCompress(app, compression)
         _staticFile(app, express, 'public', 'public');
+    }
+
+    const _initAuthentication = function(){
+        configHelper.findOne('passport')(app, passport);
     }
 
     const _initAppLocal = function(){
@@ -90,6 +97,7 @@ const MY_APP = function(opt){
 
             _initSecurity();
             _initBaseMiddlewares();
+            _initAuthentication();
 
             _initAppLocal();
             _initViewEngineAndLayOut();
