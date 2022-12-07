@@ -1,12 +1,13 @@
 
 const dbConfigs      = require("./util/configs/process").getProcess("db");
+const initGlobal     = require("./init/global");
 const myDB           = require("./init/db.js")(dbConfigs);
 const app            = require("./init/my-app.js")();
 
 async function main(){
-
     await myDB.load();
-
+    
+    initGlobal();
     app.run();
 
     app.applyHttpReq('/test', 'get', 
