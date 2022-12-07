@@ -1,4 +1,4 @@
-const { APP_CONFIG } = require('../configs/index');
+const { APP_CONFIG } = require('../../configs/index');
 
 const CONFIGS_HEPLER = {
 

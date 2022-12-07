@@ -1,9 +1,15 @@
 
-const app  = require("./init/my-app.js")();
+const ProcessHelper  = require("./util/configs/process");
+const dbConfigs      = ProcessHelper.getProcessByName("db");
+const myDB           = require("./init/db.js")(dbConfigs);
+const app            = require("./init/my-app.js")();
 
-function main(){
+async function main(){
+
+    await myDB.load();
 
     app.run();
+
     app.applyHttpReq('/test', 'get', 
         function(req, res){
             return res.send("ok")

@@ -1,9 +1,8 @@
 //Global Moudle :
 const path = require('path');
-const passport = require('../middlewares/passport');
 
 // my module:
-const configHelper = require("../util/config");
+const configHelper = require("../util/configs/app");
 
 const MY_APP = function(opt){
 
