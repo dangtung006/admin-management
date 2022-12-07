@@ -3,8 +3,6 @@ const app  = require("./init/my-app.js")();
 
 function main(){
 
-    app.init();
-    app.applyMiddleware('master-route');
     app.run();
     
     app.applyHttpReq('/test', 'get', 

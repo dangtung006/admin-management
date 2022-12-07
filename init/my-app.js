@@ -11,13 +11,26 @@ const MY_APP = function(){
     const app         = express();
     const server      = require("http").createServer;
     
-    const session     = require('express-session');
-    const ejsLayouts  = require('express-ejs-layouts');
-    const compression = require('compression');
+    const session      = require('express-session');
+    const cookieParser = require('cookie-parser');
+    const ejsLayouts   = require('express-ejs-layouts');
+    const compression  = require('compression');
+
     const helmet      = require('helmet');
+    const csrf        = require('csurf');
 
     const _initSecurity = function(){
+        const [
+            _hideHeader,
+            _allowAccess,
+            _setCSRFProtection
+        ] = configHelper.find(['hide_header' , 'allow_access', 'CSRF_block']);
 
+        const { validOrigins : _validOrigins ,  setAllowAccess : _setAllowAccess} = _allowAccess;
+
+        _hideHeader(app, helmet);
+        _setAllowAccess(app, _validOrigins);
+        _setCSRFProtection(app, csrf, cookieParser);
     }
 
     const _initBaseMiddlewares = function (){
@@ -25,10 +38,12 @@ const MY_APP = function(){
             _session,
             _bodyParser,
             _staticFile,
-        ]  = configHelper.find(['session', 'body_parser', 'static_file']);
+            _setCompress,
+        ]  = configHelper.find(['session', 'body_parser', 'static_file', 'compress_req']);
 
         _session(app, session);
         _bodyParser(app, express);
+        _setCompress(app, compression)
         _staticFile(app, express, 'public', 'public');
     }
 
@@ -49,18 +64,28 @@ const MY_APP = function(){
             _setEjsLayouts(app, ejsLayouts);
         }
     };
-    // public 
+
+    const _applyMiddleware = function(key){
+
+        const middleware = configHelper.findOne(key); //for your own middleware and routes 
+        switch(key){
+            case 'master-route' :
+                middleware(app, '/', null);
+                break;
+        }
+    };
 
     return {
-        init   : function(){
+
+        run  : function(){
+
             _initSecurity();
             _initBaseMiddlewares();
             _initViewEngineAndLayOut();
-        },
-
-        run  : function(){
-            const port   =  configHelper.findOne('port');
             
+            _applyMiddleware("master-route");
+
+            const port   =  configHelper.findOne('port');
             const server = app.listen(port, ()=>{
                 var _host = server.address().address;
                 var _port = server.address().port;
@@ -80,25 +105,18 @@ const MY_APP = function(){
             return server;
         },
 
-        applyMiddleware(key){
-            const middleware = configHelper.findOne(key); //for your own middleware and routes 
-            switch(key){
-                case 'master-route' :
-                    middleware(app, '/', null);
-                    break;
-            }
-        },
-
         applyHttpReq : function(url, method, handler, middlewares = null){
             switch(method){
                 case 'get' : 
                     if(middlewares.length > 0) return app.get(url, ...middlewares, handler);
                     app.get(url, handler);
                     break;
+
                 case 'post' :
                     if(middlewares.length > 0) return app.post(url, ...middlewares, handler);
                     app.post(url, handler);
                     break;
+                    
                 default: 
                     app.use(function(req, res){
                         return res.send("bad req")

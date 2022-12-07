@@ -12,7 +12,6 @@ const CONFIGS_HEPLER = {
         for(let idx = 0; idx < configs.length; idx++){
             const key = configs[idx];
             if(APP_CONFIG.hasOwnProperty(key)){
-                console.log(`${key} :::  ` , APP_CONFIG[key]);
                 configsToGet.push(APP_CONFIG[key]);
             }
         }

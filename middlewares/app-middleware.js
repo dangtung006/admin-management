@@ -54,18 +54,27 @@ module.exports = {
     },
 
     
-    setCookie : function(app){
-        var csrfProtection = ModuleCSRF({ cookie: true });
-        global.csrfProtection = csrfProtection;
-        app.use(ModuleCookieParser('My-Key'));
+    setCSRFProtection : function(app, csrf, cookieParser){
+        global.csrfProtection = csrf({ cookie: true });
+        app.use(cookieParser('My-Key'));
     },
     
-    setAllowAccess : function(app){
-        app.use(function(req, res, next){
-            res.header('Access-Control-Allow-Origin', "*");
-            res.header('Access-Control-Allow-Methods', 'GET,POST');
-            res.header('Access-Control-Allow-Headers', 'Content-Type');
+    setAllowAccess : function(app, validOrigins){
+        app.use(function(req, res, next) {
+            //set 1 origin 
+            // res.header('Access-Control-Allow-Origin', "http://localhost:3001");
+
+            // set multi origin 
+            const origin = req.headers.origin;
+
+            if (validOrigins.includes(origin)) {
+                res.setHeader('Access-Control-Allow-Origin', origin);
+            }
+
+            res.header('Access-Control-Allow-Headers', "X-Requested-With, content-type, Accept");
+            res.header('Access-Control-Allow-Methods', "GET, POST");
+            res.header('Access-Control-Allow-Credentials', true);
             next();
-        })
+        });
     }
 }

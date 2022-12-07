@@ -3,7 +3,11 @@ const {
     setStaticFile,
     setSession,
     parseBody,
-    setMasterRoute
+    setMasterRoute,
+    setCompressReq,
+    setHeaderProtection,
+    setAllowAccess,
+    setCSRFProtection
 } = require('../middlewares/app-middleware');
 
 
@@ -13,9 +17,17 @@ module.exports = {
     'view_folder'    : 'views',
     'layout_folder'  : 'layouts/main',
 
+    'master-route'   : setMasterRoute,
     'ejs_layouts'    : setEjsLayout,
     'static_file'    : setStaticFile,
-    'master-route'   : setMasterRoute,
     'session'        : setSession,
     'body_parser'    : parseBody,
+    'compress_req'   : setCompressReq,
+
+    'hide_header'    : setHeaderProtection,
+    'CSRF_block'     : setCSRFProtection,
+    'allow_access'   : {
+        validOrigins : [ "http://localhost:3000" , "http://localhost:3001"],
+        setAllowAccess
+    }
 }
