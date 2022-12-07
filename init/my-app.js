@@ -4,9 +4,9 @@ const path = require('path');
 // my module:
 const configHelper = require("../util/config");
 
-const MY_APP = function(){
+const MY_APP = function(opt){
 
-    //private
+    // private
     const express     = require('express');
     const app         = express();
     const server      = require("http").createServer;
@@ -47,6 +47,14 @@ const MY_APP = function(){
         _staticFile(app, express, 'public', 'public');
     }
 
+    const _initAppLocal = function(){
+        let appLocal = configHelper.findOne("app_local");
+
+        for(let key in appLocal) {
+            app.locals[key] = appLocal[key];
+        }
+    };
+
     const _initViewEngineAndLayOut = function(){
         const [
             _viewEngine, 
@@ -75,12 +83,15 @@ const MY_APP = function(){
         }
     };
 
+    //public
     return {
 
         run  : function(){
 
             _initSecurity();
             _initBaseMiddlewares();
+
+            _initAppLocal();
             _initViewEngineAndLayOut();
             
             _applyMiddleware("master-route");

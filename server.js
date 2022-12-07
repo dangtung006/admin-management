@@ -4,7 +4,6 @@ const app  = require("./init/my-app.js")();
 function main(){
 
     app.run();
-    
     app.applyHttpReq('/test', 'get', 
         function(req, res){
             return res.send("ok")

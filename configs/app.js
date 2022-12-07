@@ -29,5 +29,9 @@ module.exports = {
     'allow_access'   : {
         validOrigins : [ "http://localhost:3000" , "http://localhost:3001"],
         setAllowAccess
+    },
+
+    'app_local'   : {
+        'pagingHelper' : require("../util/paging-helper")
     }
 }
