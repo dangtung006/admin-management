@@ -1,6 +1,5 @@
 
-const ProcessHelper  = require("./util/configs/process");
-const dbConfigs      = ProcessHelper.getProcessByName("db");
+const dbConfigs      = require("./util/configs/process").getProcess("db");
 const myDB           = require("./init/db.js")(dbConfigs);
 const app            = require("./init/my-app.js")();
 
