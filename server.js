@@ -1,5 +1,5 @@
 
-const app  = require("./init/my-app.js");
+const app  = require("./init/my-app.js")();
 
 function main(){
 

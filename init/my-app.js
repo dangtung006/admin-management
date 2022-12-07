@@ -16,12 +16,11 @@ const MY_APP = function(){
     const compression = require('compression');
     const helmet      = require('helmet');
 
+    const _initSecurity = function(){
+
+    }
+
     const _initBaseMiddlewares = function (){
-
-        const _initSecurity = function(){
-            
-        }
-
         const [
             _session,
             _bodyParser,
@@ -94,7 +93,7 @@ const MY_APP = function(){
             switch(method){
                 case 'get' : 
                     if(middlewares.length > 0) return app.get(url, ...middlewares, handler);
-                    app.get(url, ...middlewares, handler);
+                    app.get(url, handler);
                     break;
                 case 'post' :
                     if(middlewares.length > 0) return app.post(url, ...middlewares, handler);
@@ -109,4 +108,4 @@ const MY_APP = function(){
     }
 }
 
-module.exports = MY_APP();
+module.exports = MY_APP;
