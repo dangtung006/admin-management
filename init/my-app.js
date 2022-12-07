@@ -13,8 +13,14 @@ const MY_APP = function(){
     
     const session     = require('express-session');
     const ejsLayouts  = require('express-ejs-layouts');
+    const compression = require('compression');
+    const helmet      = require('helmet');
 
-    const _initMiddlewares = function (){
+    const _initBaseMiddlewares = function (){
+
+        const _initSecurity = function(){
+            
+        }
 
         const [
             _session,
@@ -44,12 +50,12 @@ const MY_APP = function(){
             _setEjsLayouts(app, ejsLayouts);
         }
     };
-
     // public 
 
     return {
         init   : function(){
-            _initMiddlewares();
+            _initSecurity();
+            _initBaseMiddlewares();
             _initViewEngineAndLayOut();
         },
 
