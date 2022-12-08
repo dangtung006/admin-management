@@ -5,27 +5,32 @@ const myDB           = require("./init/db.js")(dbConfigs);
 const app            = require("./init/my-app.js")();
 
 async function main(){
-    //await myDB.load();
+    try{
+        //await myDB.load();
+        initGlobal();
+        app.run();
     
-    initGlobal();
-    app.run();
-
-    app.applyHttpReq('/test', 'get', 
-        function(req, res){
-            return res.send("ok")
-        },
-        [
-            function(req, res, next){
-                console.log("this is middlewares 01");
-                return next();
+        app.applyHttpReq('/test', 'get', 
+            function(req, res){
+                return res.send("ok")
             },
-    
-            function(req, res, next){
-                console.log("this is middlewares 02");
-                return  next();
-            }
-        ]
-    );
+            [
+                function(req, res, next){
+                    console.log("this is middlewares 01");
+                    return next();
+                },
+        
+                function(req, res, next){
+                    console.log("this is middlewares 02");
+                    return  next();
+                }
+            ]
+        );
+        
+    }catch(e){
+        console.warn('--> Run', error);
+        process.exit(1);
+    }
 }
 
 main();
