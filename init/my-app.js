@@ -15,6 +15,7 @@ const MY_APP = function(opt){
     const cookieParser = require('cookie-parser');
     const ejsLayouts   = require('express-ejs-layouts');
     const compression  = require('compression');
+    const fileManager  = require("express-file-manager");
 
     //securitymiddleware
     const helmet      = require('helmet');
@@ -65,7 +66,7 @@ const MY_APP = function(opt){
         }
     };
 
-    const _initViewEngineAndLayOut = function(){
+    const _initViewsUI = function(){
         const [
             _viewEngine, 
             _viewFolder,
@@ -82,6 +83,16 @@ const MY_APP = function(opt){
             _setEjsLayouts(app, ejsLayouts);
         }
     };
+
+    const _initFileManager = function(){
+        var [
+            _setFileManager, 
+            _fileUrl,
+            _fileDir,
+        ] = configHelper.find(['file_manager', 'file_url', 'file_dir']);
+        _fileDir = path.join(__dirname, `../${_fileDir}`);
+        _setFileManager(app, fileManager, _fileUrl, _fileDir);
+    }
 
     const _applyMiddleware = function(key){
 
@@ -107,7 +118,8 @@ const MY_APP = function(opt){
             _initAuthentication();
 
             _initAppLocal();
-            _initViewEngineAndLayOut();
+            _initFileManager();
+            _initViewsUI();
             
             _applyMiddleware("master-route");
 

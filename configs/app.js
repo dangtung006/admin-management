@@ -7,7 +7,8 @@ const {
     setCompressReq,
     setHeaderProtection,
     setAllowAccess,
-    setCSRFProtection
+    setCSRFProtection,
+    setFileManager
 } = require('../middlewares/app-middleware');
 
 const makeAuthenByPassport  = require("../middlewares/passport");
@@ -26,6 +27,11 @@ module.exports = {
     'body_parser'    : parseBody,
     'compress_req'   : setCompressReq,
 
+    'file_manager'   : setFileManager,
+    'file_url'       : '/logs/manager',
+    'file_dir'       : '/logs',
+
+    'passport'       : makeAuthenByPassport,
     'hide_header'    : setHeaderProtection,
     'CSRF_block'     : setCSRFProtection,
     'allow_access'   : {
@@ -35,7 +41,6 @@ module.exports = {
 
     'app_local'   : {
         'pagingHelper' : require("../util/paging-helper")
-    },
+    }
 
-    'passport'   : makeAuthenByPassport
 }

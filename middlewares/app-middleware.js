@@ -44,6 +44,10 @@ module.exports = {
         }));
     },
 
+    setFileManager : function(app, fileManager, fileUrl, dirFile, opt = {}){
+        app.use(fileUrl, fileManager(dirFile, opt));
+    },
+
     parseBody :  function(app, express){
         app.use(express.json());
         app.use(express.urlencoded({extended : true}));
