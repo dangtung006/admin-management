@@ -39,7 +39,7 @@ module.exports = {
                     return false
                 }
                 // fallback to standard filter function
-                return ModuleCompression.filter(req, res)
+                return compression.filter(req, res)
             }
         }));
     },

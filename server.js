@@ -5,7 +5,7 @@ const myDB           = require("./init/db.js")(dbConfigs);
 const app            = require("./init/my-app.js")();
 
 async function main(){
-    await myDB.load();
+    //await myDB.load();
     
     initGlobal();
     app.run();

@@ -9,16 +9,20 @@ const MY_APP = function(opt){
     // private
     const express     = require('express');
     const app         = express();
-    const server      = require("http").createServer;
-    
+
+    //base midleware
     const session      = require('express-session');
     const cookieParser = require('cookie-parser');
     const ejsLayouts   = require('express-ejs-layouts');
     const compression  = require('compression');
 
+    //securitymiddleware
     const helmet      = require('helmet');
     const csrf        = require('csurf');
     const passport    = require("passport");
+
+    //you custom middle ware
+    const masterRoute = require("../routes/index");
 
 
     const _initSecurity = function(){
@@ -82,9 +86,10 @@ const MY_APP = function(opt){
     const _applyMiddleware = function(key){
 
         const middleware = configHelper.findOne(key); //for your own middleware and routes 
+
         switch(key){
             case 'master-route' :
-                middleware(app, '/', null);
+                middleware(app, '/', masterRoute);
                 break;
         }
     };
@@ -92,7 +97,10 @@ const MY_APP = function(opt){
     //public
     return {
 
-        run  : function(){
+        app     : app,
+        router  : express.Router(),
+
+        run     : function(){
 
             _initSecurity();
             _initBaseMiddlewares();
@@ -109,18 +117,6 @@ const MY_APP = function(opt){
                 var _port = server.address().port;
                 console.log("app listening at http://%s:%s", _host,  _port)
             });
-        },
-
-        getApp : function(){
-            return app;
-        },
-
-        getRouter : function(){
-            return app.router();
-        },
-
-        getServer : function(){
-            return server;
         },
 
         applyHttpReq : function(url, method, handler, middlewares = null){
