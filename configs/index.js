@@ -1,5 +1,6 @@
 module.exports = {
     'APP_CONFIG' : require("./app"),
-    'PROCESS_CONFIG' : require("./process")
+    'PROCESS_CONFIG' : require("./process"),
+    'RESPONSE_CONFIG' : require("./response-code")
 }
 
