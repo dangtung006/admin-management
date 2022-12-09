@@ -1,10 +1,11 @@
-const Agenda = require("agenda");
-const Agendash = require('agendash');
+const Agenda              = require("agenda");
+const Agendash            = require('agendash');
+const jobWorkerConfig     = require('./job-workers/index');
+
 class SCHEDULE_HELPER {
 
 	constructor() {
         let self = this;
-
         this.agenda = new Agenda({
             db: { 
                 address: process.env.DB_PATH, 
@@ -80,11 +81,11 @@ class SCHEDULE_HELPER {
 
     _createJob(jobConfig) {
         try {
-            let jobClass = jobConfig.class;
-            console.log("jobClass", jobClass)
-            console.log("classConstructors[jobClass]", classConstructors[jobClass])
-            let jobWorker = new classConstructors[jobClass](jobConfig);
+
+            let jobClass        = jobConfig.class;
+            let jobWorker       = new jobWorkerConfig[jobClass](jobConfig);
             return jobWorker;
+            
         } catch (err) {
             logger.error("Unable to create job" , JSON.stringify(jobConfig));
             logger.error(err);
