@@ -9,7 +9,7 @@ const DB_HELPER = function (opt){
     const db         = MongooseModule.connection;
 
     db.once('open', () => {
-        console.log('Connected to database');
+        logger.info('Connected to database');
     });
 
     const _load =  async function(count = 0){

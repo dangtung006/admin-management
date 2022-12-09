@@ -5,11 +5,10 @@ const myDB           = require("./init/db.js")(dbConfigs);
 const app            = require("./init/my-app.js")();
 
 async function main(){
+    initGlobal();
     try{
         //await myDB.load();
-        initGlobal();
         app.run();
-    
         app.applyHttpReq('/test', 'get', 
             function(req, res){
                 return res.send("ok")
@@ -26,9 +25,11 @@ async function main(){
                 }
             ]
         );
+
+        logger.info('app start successfully');
         
-    }catch(e){
-        console.warn('--> Run', error);
+    }catch(error){
+        logger.error('--> Run', error);
         process.exit(1);
     }
 }

@@ -6,9 +6,5 @@ module.exports = {
             useUnifiedTopology: true,
             //useCreateIndex: true
         },
-    },
-
-    "log" : {
-        
     }
 }
