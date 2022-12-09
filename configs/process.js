@@ -6,5 +6,19 @@ module.exports = {
             useUnifiedTopology: true,
             //useCreateIndex: true
         },
+    },
+
+    "notification" : {
+        "telegram" : {
+            apiUrl: "baseurl/api/noti-msg/",
+            minorChatId: "",
+            mainChatId: "",
+            errorChatId: "",
+            telegramToken:""
+        },
+
+        "sms" : {
+            
+        }
     }
 }
