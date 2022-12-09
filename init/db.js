@@ -1,4 +1,4 @@
-const { delay } = require("../util/time-helper");
+const { wait } = require("../util/date-time-helper");
 
 const MongooseModule = require('mongoose');
 
@@ -19,7 +19,7 @@ const DB_HELPER = function (opt){
             return await MongooseModule.connect(url, optConnect);
         }catch(e){
             if(count <= 10) {
-                await delay(1500);
+                await wait(1500);
                 return _load(count);
             }
             return new Error("Fail to connect DB")

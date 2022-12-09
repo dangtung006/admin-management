@@ -1,9 +1,7 @@
 module.exports = {
-    delay : function(time){
+    wait : function(time){
         return new Promise((resolve, reject)=>{
-            setTimeout(function(){
-                return resolve(true);
-            }, time)
+            setTimeout(function(){ return resolve(true); }, time)
         });
     }
 }

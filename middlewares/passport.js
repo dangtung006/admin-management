@@ -1,6 +1,6 @@
 
 const LocalStrategy = require("passport-local").Strategy;
-const File          = require("../util/file");
+const File          = require("../util/file-helper");
 
 module.exports = function(app, passport){
     
