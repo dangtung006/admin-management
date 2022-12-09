@@ -32,11 +32,11 @@ export default  {
     },
 
     roundUpFloatNumber(x, decimals = 6) {
-	        if (isNaN(x) == true) x = 0;
-	        x = Math.ceil(x * 10 ** decimals) / 10 ** decimals;
-	        x = parseFloat(x).toFixed(decimals);
-	        x = parseFloat(x);
-	        return x;
+        if (isNaN(x) == true) x = 0;
+        x = Math.ceil(x * 10 ** decimals) / 10 ** decimals;
+        x = parseFloat(x).toFixed(decimals);
+        x = parseFloat(x);
+        return x;
 	},
 
 	roundDownFloatNumber(x, decimals = 6) {
