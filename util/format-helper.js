@@ -78,5 +78,34 @@ export default  {
         _r = _r.split("").reverse().join("");
         _r = parseFloat(_r);
         return _r;
-    }
+    },
+
+    convertPrice: (price) => {
+        let priceArr = price.split('.')
+        let priceInt = parseInt(priceArr[0]).toLocaleString()
+        let priceSecond = priceArr[1] || ''
+        return `${priceInt}.${priceSecond}`
+    },
+
+    convertPriceNumber: (price) => {
+        if (!price) return ''
+        price = parseFloat(price)
+        price = price.toFixed(2)
+        let priceArr = price.split('.')
+        let priceInt = parseInt(priceArr[0]).toLocaleString()
+        let priceSecond = priceArr[1] || ''
+        return `${priceInt}.${priceSecond}`
+    },
+
+    convertPriceToNumber: (number) => {
+        number = parseFloat(number)
+        number = number.toFixed(2)
+        let priceArr = number.split('.')
+
+        let firstStr = common_utils.numberToEnglish(parseInt(priceArr[0])) + ' Dollars'
+        let secondStr = priceArr[1] == '00' ? '' : common_utils.numberToEnglish(parseInt(priceArr[1])) + ' Cents'
+
+        return (secondStr) ? firstStr + ' and ' + secondStr : firstStr
+    },
+
 }
