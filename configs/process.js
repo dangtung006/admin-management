@@ -6,6 +6,8 @@ module.exports = {
             useUnifiedTopology: true,
             //useCreateIndex: true
         },
+
+        useMongoSession : 1
     },
 
     "notification" : {
