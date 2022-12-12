@@ -36,7 +36,7 @@ export default {
         })
         return result;
     },
-    getArrayByPageLimit: function ( array, page, limit ) {
+    getArrayByPageLimit( array, page, limit ) {
        var new_array = [];
        page = page ? parseInt( page ) : 1;
        limit= limit? parseInt( limit ): 20;
@@ -46,5 +46,51 @@ export default {
            }
        }
        return new_array;
-   },
+    },
+
+    joinAndRemoveDupplicate(arr1, arr2) {
+        let arr = [];
+        let idx = 0;
+        for (idx=0; idx<arr1.length; idx++) {
+            arr.push(arr1[idx]);
+        }
+        for (idx=0; idx<arr2.length; idx++) {
+            if (arr.indexOf(arr2[idx])<0) arr.push(arr2[idx]);
+        }
+        return arr;
+    },
+
+    joinArray(arr1, arr2) {
+        let arr = [];
+        let idx = 0;
+        if (arr1) {
+            for (idx=0; idx<arr1.length; idx++) {
+                arr.push(arr1[idx]);
+            }
+        }
+        if (arr2) {
+            for (idx=0; idx<arr2.length; idx++) {
+                arr.push(arr2[idx]);
+            }
+        }
+        
+        return arr;
+    },
+
+    arrayPushAll(items, addedItems) {
+        if (addedItems) {
+            for (idx=0; idx<addedItems.length; idx++) {
+                items.push(addedItems[idx]);
+            }
+        }
+        return items;
+    },
+
+    findItemByKey(arr, key, value) {
+        for (let idx=0; idx<arr.length; idx++) {
+            let item = arr[idx];
+            if (item[key]==value) return item;
+        }
+        return null;
+    }
 }
