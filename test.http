@@ -24,3 +24,11 @@ GET http://localhost:3000/user/us/10
 
 ###
 GET http://localhost:3000/user/list
+
+###
+POST http://localhost:3000/book/create
+Content-Type: application/json
+
+{
+    "name"    : "abc"
+}

@@ -3,19 +3,23 @@ const BookModel       = require("../models/books.model");
 
 class BookService extends BaseService {
     constructor(){
-        // super({
-        //     model : BookModel,
-        //     limit : 10,
-        //     skip  : 5
-        // });
-        this.limit = limit;
-        this.skip  = skip;
+        super();
+        this.limit = 5;
+        this.skip  = 10;
         this.model = BookModel;
     }
 
     getByName (name) {
         return this.model.findOne({ name : name })
     }
+
+    async save(){
+
+    }
+
+    async update(){
+
+    }
 }
 
-module.exports = BookService;
+module.exports = new BookService();

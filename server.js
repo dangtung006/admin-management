@@ -7,7 +7,6 @@ const app            = require("./init/my-app.js")();
 async function main(){
     initGlobal();
     try{
-        const myGmail = new MailHelper();
         //await myDB.load();
         app.run();
         app.applyHttpReq('/test', 'get', 
