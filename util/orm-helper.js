@@ -46,21 +46,17 @@ const ORM_HELPER = function(){
     }
 
     return {
-        getSchema : function(){
-            return mongoose.Schema;
-        },
+        Schema : mongoose.Schema,
+        Types  : mongoose.Types,
 
-        initModel : function(collection, schemaObj){
-            mongoose.model(collection, schemaObj);
+        initModel : function(collectionName, schemaObj){
+            return mongoose.model(collectionName, schemaObj);
         },
 
         applyMiddlewares : function(schema, event, cb){
             schema.pre(event, cb);
         },
 
-        getMongooseTypes : function(){
-            return mongoose.Types
-        },
 
         //
         initTransaction : async function(_process, _opts){

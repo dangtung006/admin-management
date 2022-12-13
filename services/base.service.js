@@ -1,10 +1,7 @@
 
 class BaseService {
 
-    constructor(opt){
-        for(let key in opt) {
-            this[key] = opt[key];
-        }
+    constructor(){
     }
 
     getById(id){
