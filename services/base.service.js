@@ -8,15 +8,13 @@ class BaseService {
         return this.model.findOne({ _id : id })
     }
 
-    getList(query){
-        let limit = this.limit ? this.limit : 10000;
-        let skip  = this.skip  ? this.skip : 0;
-        return this.model.find(query).limit(limit).skip(skip);
-    }
+    getList({ page, limit }) {
+		return this.model.find({status: { $ne: -1 } }).sort({ "createdAt": -1 }).skip((page - 1) * limit).limit(limit);
+	}
 
-    count(query){
-        return this.model.count(query);
-    }
+	countAll({}) {
+		return this.model.count({status: { $ne: -1 } });
+	}
 
     create(_options){
         return this.model.create(_options);
