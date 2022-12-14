@@ -5,9 +5,10 @@ const BookSchema = new Schema({
     parent         : Types.ObjectId,
     publisher      : Types.ObjectId,
     authors        : [{ type : Types.ObjectId }],
-    created_at    : { type: Date, default: Date.now },
-    updated_at    : { type: Date, default: Date.now },
-    deleted_at    : { type: Date, default: null }
+    status         : { type   : Number, default : 1},
+    created_at     : { type: Date, default: Date.now },
+    updated_at     : { type: Date, default: Date.now },
+    deleted_at     : { type: Date, default: null }
 });
 
 module.exports = initModel('books', BookSchema);
