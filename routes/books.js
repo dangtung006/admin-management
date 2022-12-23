@@ -1,9 +1,21 @@
 const  { router }          = require("../init/my-app")();
-const BookHandler          = require("../controllers/book");
-const { Handle, Render}    = require("../util/controller-helper");
+const BookController       = require("../controllers/book");
+const BaseRouter           = require("./base");
 
+class BookRouter extends BaseRouter {
+    constructor(){
 
-router.post("/create", BookHandler.handleAdd);
-router.get("/list", BookHandler.renderList);
+        super({
+            router : router
+        })
 
-module.exports = router;
+        const { 
+            renderList , 
+            renderAdd 
+        }                    = new BookController();
+
+        this.router.get("/list", this.RenderWrapper(renderList));
+        this.router.post("/create", this.RenderWrapper(renderAdd));
+    }
+}
+module.exports = BookRouter

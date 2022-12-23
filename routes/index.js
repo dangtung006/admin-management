@@ -1,28 +1,31 @@
 const RouterAccount        = require('./account');
-const RouterBook           = require('./books');
 const { Handle, Render}    = require("../util/controller-helper");
 const { router }           = require("../init/my-app")();
 
-class AppRouter {
-    constructor(opt){
-        this.appRouter  = router;
-    }
 
-    init(){
-        this.initMainRoute();
-        this.includeChildRoutes();
+const RouterConfigs = {
+    'book'  : require('./books')
+}
+
+class AppRouter {
+    constructor(){
+        this.appRouter  = router;
+        
+        for(let key in RouterConfigs ){
+            this.appRouter.use(`/${key}`, new RouterConfigs[key]().router );
+        }
     }
     
-    includeChildRoutes(){
-        this.appRouter.use("/account" , RouterAccount);
-        this.appRouter.use("/book" , RouterBook);
-    }
+    // includeChildRoutes(){
+    //     this.appRouter.use("/account", RouterAccount);
+    //     this.appRouter.use("/book" , new BookRouter().router);
+    // }
 
-    initMainRoute(){
-        this.appRouter.get('/',  function(req, res){
-            return res.send("this is home page");
-        });
-    }
+    // initMainRoute(){
+    //     this.appRouter.get('/',  function(req, res){
+    //         return res.send("this is home page");
+    //     });
+    // }
 
 }   
 

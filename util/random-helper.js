@@ -16,5 +16,24 @@ module.exports = {
     randomByDigits(digits){
         let number = 10 ** parseInt(digits - 1);
         return Math.floor(number + Math.random() * number * 9);
-    }
+    },
+
+    generateRandomList(nums, min, max){
+		if(min > max) 
+			return false;
+			
+		if(quests > max ) 
+			return false;
+		
+		tempArray = new Array(nums);
+		for(i= 0; i < quests; i++) {
+			let random = this.random(min, max);
+			if (tempArray.indexOf(random) < 0){
+				tempArray[i] = random;
+			}else{
+				i--;
+			}
+		}
+		return tempArray;
+	},
 }

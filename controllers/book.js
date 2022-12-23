@@ -67,4 +67,4 @@ class BookController extends BaseController {
     }
 }
 
-module.exports = new BookController()
+module.exports = BookController

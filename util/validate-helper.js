@@ -1,11 +1,21 @@
+/*
+* create by dangtung at 20/12/2022
+*/
+const ValidateHelper = function(){
+    const Joi          = require('joi');
 
-const VALIDATE_HELPER = function(){
     return {
-        joi :  require('joi'),
+        getJoi    : function(){
+            return Joi;
+        },
 
-        makeValidate : async function(joiObj, data){
+        getJoiOBJ : function(obj={}){
+            return Joi.object(obj);
+        },
+
+        makeValidate : async function(joiOBJ , data){
             try{
-                let { error } = await joiObj.validate(data);
+                let { error } = await joiOBJ.validate(data);
                 return error && error.details  ? error.details : {};
             }catch(err){
                 throw new Error(err);
@@ -17,6 +27,6 @@ const VALIDATE_HELPER = function(){
             throw new Error(_message);
         }
     }
-};
+}
 
-module.exports = VALIDATE_HELPER;
+module.exports = ValidateHelper();
