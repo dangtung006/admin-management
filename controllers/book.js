@@ -1,50 +1,70 @@
-const BookService    = require("../services/books.service");
-const { renderUrl }  = require("../util/paging-helper");
+const BaseController = require("./base");
 
-module.exports = {
+const viewConfigs    = {
+	'list' : {
+		pathView   : 'book/index',
+		pageData   : {
+			pageTitle : 'Books',
+			pageJs    : [],
+			pageTitle  : "Books"
+		}
+	},
 
-    async renderList(req, res) {
+	'getAdd' : {
+
+	},
+
+	'handleAdd' : {
+
+	}
+}
+
+class BookController extends BaseController {
+	constructor(){
+		super({
+			views : viewConfigs
+		})
+	}
+
+	async renderList(req, res) {
 
         let page              = req.query.page;
 		let limit             = req.query.limit;
 		page                  = page > 0 ? parseInt(page)   : 1;
 		limit                 = limit > 0 ? parseInt(limit) : 10;
 
-		let pagingUrl         = renderUrl('/book/list', {});
 		let books             = await BookService.getList({page, limit});
 		let total             = await BookService.countAll();
 
-        return {
-			pathView: 'book/index',
-			pageData: {
-				menuActive : "/book/list",
-				pageTitle  : "Books",
-				data       : {
-					books            : books,
-					numberPage       : Math.ceil(total/limit),
-					pagingUrl        : pagingUrl,
-					currentPage      : page,
-					limit            : limit
-				}
-			}	
-		}; 
-    },
+		this.getResponse('list' , {
+			books            : books,
+			numberPage       : Math.ceil(total/limit),
+			pagingUrl        : this.getPageingUrl('/book/list', {}),
+			currentPage      : page,
+			limit            : limit
+		});
 
-    async renderAdd(){
+    }
 
-    },
+    async renderAdd(req, res){
 
-    async renderEdit(){
+    }
 
-    },
+    async renderEdit(req, res){
+
+    }
 
     async handleAdd(req, res){
-    },
+
+    }
 
     async handleEdit(req, res){
-    },
 
-    async handleRemove(req, res){
+    }
+
+    async remove(req, res){
 
     }
 }
+
+module.exports = new BookController()
