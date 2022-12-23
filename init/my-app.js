@@ -99,9 +99,17 @@ const MY_APP = function(opt){
         const middleware = configHelper.findOne(key); //for your own middleware and routes 
 
         switch(key){
-            case 'master-route' :
-                middleware(app, '/', masterRoute);
+            case 'master-route' : {
+                
+                const myRoute  = new masterRoute({
+                    app : app,
+                    passport : passport
+                });
+
+                myRoute.init();
+                middleware(app, '/', myRoute.appRouter);
                 break;
+            }
         }
     };
 
