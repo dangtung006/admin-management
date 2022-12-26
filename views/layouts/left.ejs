@@ -1,0 +1,27 @@
+<%
+if (typeof menuActive === 'undefined') {
+    menuActive = '/';
+}
+%>
+
+<div class="menu navbar-collapse collapse show" id="main-menu">
+    <ul class="nav flex-column navbar-nav mr-auto">
+
+        <li  onclick="location.href='/logout';" class="nav-item">
+            <span class="logout"></span>
+            <a class="nav-link" href="/logout">Logout</a>
+        </li>
+
+        <li class="nav-item <% if(menuActive == "/") { %>active<% } %>">
+            <span class="home"></span>
+            <a class="nav-link <% if(menuActive == "/") { %>active<% } %>" href="/">Dashboard</a>
+        </li>
+
+        <li class="nav-item <% if(menuActive == "/book/list") { %>active<% } %>">
+            <span class="book"></span>
+            <a class="nav-link <% if(menuActive == "/book/list") { %>active<% } %>" href="/book/list">Books</a>
+        </li>
+
+        <p class="text-center wrap-version">Version 1.0.0</p>
+    </ul>
+</div>

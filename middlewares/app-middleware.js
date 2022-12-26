@@ -1,7 +1,7 @@
 
 module.exports = {
     
-    setEjsLayout : function(app, ejsLayouts){
+    setEjsLayouts : function(app, ejsLayouts){
         app.use(ejsLayouts);
     },
 

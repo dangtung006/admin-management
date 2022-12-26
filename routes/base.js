@@ -4,30 +4,25 @@ const { renderUrl }        = require("../util/paging-helper");
 
 class BaseRouter {
     constructor(opt){
+        const views          = opt.views;
         this.router          = opt.router;
-        this.views           = opt.views;
         this.pageRenderUrl   = renderUrl;
+        this.handleWraper    = Handle;
+        this.renderWrapper   = Render;
         var services         = opt.services ? opt.services : {};
 
         for(let key in  services) {
             this[key]  = services[key];
         }
-    }
 
-    handleWraper(cb){
-        return Handle(cb);
-    }
+        this.makeValidate = function(){
+            console.log("validate book");
+        }
 
-    renderWrapper(cb){
-        return Render(cb);
-    }
-
-    makeValidate(){
-        console.log("validate book");
-    }
-
-    getResponse(key, data){
-        return this.views[key].pageData.data = data;
+        this.getResponse  = function(key, data){
+            views[key].pageData.data = data;
+            return views[key];
+        }
     }
 }
 module.exports = BaseRouter;

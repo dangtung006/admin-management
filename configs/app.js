@@ -1,5 +1,5 @@
 const {
-    setEjsLayout,
+    setEjsLayouts,
     setStaticFile,
     setSession,
     parseBody,
@@ -21,7 +21,7 @@ module.exports = {
     'layout_folder'  : 'layouts/main',
 
     'master-route'   : setMasterRoute,
-    'ejs_layouts'    : setEjsLayout,
+    'ejs_layouts'    : setEjsLayouts,
     'static_file'    : setStaticFile,
     'session'        : setSession,
     'body_parser'    : parseBody,

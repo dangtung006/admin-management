@@ -1,0 +1,79 @@
+<%
+if (typeof pageTitle == 'undefined') {
+    pageTitle = 'Settings';
+}
+if (typeof pageJs == 'undefined') {
+    pageJs = [];
+}
+if (typeof pageDescription == 'undefined') {
+    pageDescription = '';
+}
+if (typeof pageAction == 'undefined') {
+    pageAction = '';
+}
+if (typeof urlSearch == 'undefined') {
+    urlSearch = '';
+}
+if (typeof searchByUser == 'undefined') {
+    searchByUser = false;
+}
+if (typeof eventSearch == 'undefined') {
+    eventSearch = false;
+}
+if (typeof assetSearch == 'undefined') {
+    assetSearch = false;
+}
+if (typeof assetSearchAll == 'undefined') {
+    assetSearchAll = false;
+}
+if (typeof walletAddrSearch == 'undefined') {
+    walletAddrSearch = false;
+}
+if (typeof accountType == 'undefined') {
+    accountType = 0;
+}
+
+%>
+<!DOCTYPE html> 
+<html lang="ja">
+<head>
+    <title><%= pageTitle %> - Betaverse</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport" />
+    <meta name="description" content="<%= pageDescription %>"/>
+    <meta property="og:title" content="<%- pageTitle %>"/>
+    <meta property="og:description" content="<%= pageDescription %>"/>
+    <!-- <link href="/css/style.css" rel="stylesheet">  -->
+    <!-- <link rel="stylesheet" href="/css/vendors/fontawesome/font-awesome.css" media="all">
+    <link rel="stylesheet" href="/css/vendors/bootstrap/bootstrap.min.css" media="all">
+    <link rel="stylesheet" href="/css/vendors/jquery-ui/jquery-ui.css" media="all">
+    <script src="/js/dependencies/vendor/jquery.js"></script>
+    <script src="/js/dependencies/vendor/ejs.min.js"></script>
+    <script src="/js/dependencies/vendor/tinymce/tinymce.min.js"></script>
+    <script src="/js/dependencies/vendor/popper.min.js"></script>
+    <script src="/js/dependencies/vendor/bootstrap.min.js"></script>
+    <script src="/js/dependencies/vendor/jquery.validate.min.js"></script> -->
+    <% for(var i = 0; i < pageJs.length; i++) { %>
+    <script type="text/javascript" src="/js/<%= pageJs[i] %>"></script>
+    <% } %>
+</head>
+<body class="">
+<header class="container-fluid app-header">
+    <div class="row">
+        <div class="col-xl-2 logo">
+            <div class="text-center">
+                <img src="../../assets/images/logo.png" alt="">
+            </div>
+        </div>
+        <div class="col-xl-10 right-action">
+            <div class="name-page">
+                <h4 class="name">
+                    <%= pageTitle %>
+                </h4>
+            </div>            
+            <% if ( pageAction != '') { %> 
+                <a href="<%= pageAction %>" class="btn btn-active btn-primary float-right ml-2">Add</a>
+            <% } %>
+        </div>  
+    </div>
+</header>

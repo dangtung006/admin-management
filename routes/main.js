@@ -1,18 +1,31 @@
-const  { router }          = require("../init/my-app")();
-const BaseRouter           = require("./base");
+const  { router }            = require("../init/my-app")();
+const BaseRouter             = require("./base");
+const MainController         = require("../controllers/main");
 
-class BookRouter extends BaseRouter {
+const viewConfigs = {
+    'list' : {
+        pathView: 'index',
+        pageData: {
+            menuActive : "/",
+            pageTitle  : "Dashboard",
+            pageJs     : [],
+        }	
+    }
+}
+
+class MainRouter extends BaseRouter {
     constructor(){
 
         super({
-            router : router
-        })
+            router : router,
+            views  : viewConfigs,
+            services : {}
+        });
 
-        this.router.get("/home", this.handleWraper(function(req, res, next){
-            return {
-                data : 'this is home page'
-            }
-        }));
+        const { renderDashBoard } = MainController(this);
+
+        this.router.get("/", this.renderWrapper(renderDashBoard));
     }
 }
-module.exports = BookRouter
+
+module.exports = MainRouter;

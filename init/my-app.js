@@ -75,8 +75,8 @@ const MY_APP = function(opt){
 
         ] = configHelper.find(['views_engine', 'view_folder', 'layout_folder', 'ejs_layouts']);
             
+        app.set('views', path.join(__dirname, `../${_viewFolder}`));
         app.set('view engine', _viewEngine);
-        app.set('views', path.join(__dirname, _viewFolder));
         app.set('layout', _layoutFolder);
 
         if(_viewEngine == 'ejs') {

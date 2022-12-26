@@ -22,18 +22,6 @@ class AppRouter {
         }
 
     }
-    
-    // includeChildRoutes(){
-    //     this.appRouter.use("/account", RouterAccount);
-    //     this.appRouter.use("/book" , new BookRouter().router);
-    // }
-
-    // initMainRoute(){
-    //     this.appRouter.get('/',  function(req, res){
-    //         return res.send("this is home page");
-    //     });
-    // }
-
 }   
 
 module.exports = AppRouter;
