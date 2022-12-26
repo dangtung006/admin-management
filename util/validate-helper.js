@@ -29,4 +29,4 @@ const ValidateHelper = function(){
     }
 }
 
-module.exports = ValidateHelper();
+module.exports = ValidateHelper

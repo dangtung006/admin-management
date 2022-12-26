@@ -13,7 +13,9 @@ class BookService extends BaseService {
         return this.model.findOne({ name : name })
     }
     
-    async search(){}
+    search(a){
+        console.log("aaaaaa");
+    }
 }
 
 module.exports = new BookService();

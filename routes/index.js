@@ -1,19 +1,26 @@
 const RouterAccount        = require('./account');
-const { Handle, Render}    = require("../util/controller-helper");
 const { router }           = require("../init/my-app")();
 
 
-const RouterConfigs = {
-    'book'  : require('./books')
-}
+const RouterList = [
+    {
+        'route' : '/',
+        'class' : require("./main")
+    },
+    {
+        'route' : '/book',
+        'class'  : require('./books')
+    }
+]
+
 
 class AppRouter {
     constructor(){
         this.appRouter  = router;
-        
-        for(let key in RouterConfigs ){
-            this.appRouter.use(`/${key}`, new RouterConfigs[key]().router );
+        for(let idx=0; idx < RouterList.length; idx++){
+            this.appRouter.use(RouterList[idx].route, new RouterList[idx]['class']().router );
         }
+
     }
     
     // includeChildRoutes(){

@@ -27,6 +27,10 @@ class BaseService {
 		return this.model.count({ status: { $ne: -1 }});
 	}
 
+    test(){
+        console.log("test service");
+    }
+
     // Handle Data
     async save(options){
         let data = await this.getById(options.id);

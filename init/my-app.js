@@ -106,7 +106,6 @@ const MY_APP = function(opt){
                     passport : passport
                 });
 
-                myRoute.init();
                 middleware(app, '/', myRoute.appRouter);
                 break;
             }
