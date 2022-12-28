@@ -36,12 +36,16 @@ class BookRouter extends BaseRouter {
         const { 
             renderList , 
             renderAdd ,
-            handleAdd
+            handleAdd,
+            handleEdit,
+            deleteOne
 
         }  = ProductController(this);
 
-        this.router.get("/list", this.renderWrapper(renderList));
+        this.router.get("/list", this.handleWraper(renderList));
+        this.router.get("/delete", this.handleWraper(deleteOne));
         this.router.post("/create", this.handleWraper(handleAdd));
+        this.router.post("/edit", this.handleWraper(handleEdit));
     }
 }
 

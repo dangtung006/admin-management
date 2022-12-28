@@ -26,11 +26,7 @@ class BaseService {
     countAll() {
 		return this.model.count({ status: { $ne: -1 }});
 	}
-
-    test(){
-        console.log("test service");
-    }
-
+    
     // Handle Data
     async save(options){
         let data = await this.getById(options.id);
@@ -44,12 +40,16 @@ class BaseService {
         return (new this.model(options)).save();
     }
 
+    updateOne(filter, fields = {}){
+        return this.model.updateOne(filter , fields);
+    }
+
     replaceOne(id, fields = {}){
         return this.model.replaceOne({ _id : id}, fields)
     }
 
 
-    deleteOne(id){
+    deleteById(id){
         return this.model.deleteOne({ _id : id });
     }
 

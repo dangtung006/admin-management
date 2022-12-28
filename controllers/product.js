@@ -19,8 +19,14 @@ function ProductController(opt)  {
 			let products          = await ProductService.getList({ page, limit});
 			let total             = await ProductService.countAll();
 
-			console.log("products : " , products);
-			
+
+			return {
+				products         : products,
+				numberPage       : Math.ceil(total/limit),
+				currentPage      : page,
+				limit            : limit
+			}
+
 			//return response :
 			// return getResponse('list' , {
 			// 	// products         : products,
@@ -46,12 +52,25 @@ function ProductController(opt)  {
 		},
 	
 		async handleEdit(req, res){
-	
+			let { id, name, brand, code, description, specs} = req.body;
+
+			let result = await ProductService.updateOne(
+				{ _id : id }, 
+				{name, brand, code, description, specs}
+			);
+
+			return {
+				result : result.acknowledged
+			}
 		},
 	
-		async remove(req, res){
-	
-		},
+		async deleteOne(req, res){
+			let id = req.query.id;
+			let result = await ProductService.deleteById({ _id : id });
+			return {
+				result
+			}
+		}
 	}
 }
 

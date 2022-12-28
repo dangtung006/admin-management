@@ -9,12 +9,8 @@ class ProductService extends BaseService {
         });
     }
 
-    getByName (name) {
-        return this.model.findOne({ name : name })
-    }
-    
     search(a){
-        console.log("aaaaaa");
+        
     }
 }
 
