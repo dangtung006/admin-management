@@ -44,6 +44,23 @@ class BaseService {
         return (new this.model(options)).save();
     }
 
+    replaceOne(id, fields = {}){
+        return this.model.replaceOne({ _id : id}, fields)
+    }
+
+
+    deleteOne(id){
+        return this.model.deleteOne({ _id : id });
+    }
+
+    updateOne(filter = {} , fields ={}){
+        return this.model.updateOne(filter, { $set : fields });
+    }
+
+    updateMany(filter = {} , fields ={}){
+        return this.model.updateMany(filter, { $set : fields });
+    }
+
     update(collection, fieldNames){
         if(
             !this.isOBJ(collection) || 

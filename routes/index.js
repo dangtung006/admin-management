@@ -8,8 +8,8 @@ const RouterList = [
         'class' : require("./main")
     },
     {
-        'route' : '/book',
-        'class'  : require('./books')
+        'route' : '/product',
+        'class'  : require('./product')
     }
 ]
 

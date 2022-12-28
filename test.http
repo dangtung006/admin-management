@@ -26,9 +26,18 @@ GET http://localhost:3000/user/us/10
 GET http://localhost:3000/user/list
 
 ###
-POST http://localhost:3000/book/create
+POST http://localhost:3000/product/create
 Content-Type: application/json
 
 {
-    "name"    : "abc"
+    "name"          : "Camera Ezviz C1C",
+    "brand"         : "EZVIZ",
+    "code"          : "C1C",
+    "description"   : "Wifi Trong Nhà Góc Siêu Rộng, Bảo Hành Chính Hãng 24 Tháng",
+
+    "specs"         : [
+        { "k" : "do_phan_giai" , "v" : 1080, "u" : "p"},
+        { "k" : "loai_the_nho",  "v" : "Micro SD" },
+        { "k" : "bao_hanh" ,     "v" : 24, "u" : "m"}
+    ]
 }

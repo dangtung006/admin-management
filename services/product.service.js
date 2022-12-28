@@ -1,11 +1,11 @@
 const BaseService     = require("./base.service");
 
-class BookService extends BaseService {
+class ProductService extends BaseService {
     constructor(){
         super({
             limit : 5,
             skip  : 10,
-            model : require("../models/books.model")
+            model : require("../models/product.model")
         });
     }
 
@@ -18,4 +18,4 @@ class BookService extends BaseService {
     }
 }
 
-module.exports = new BookService();
+module.exports = new ProductService();

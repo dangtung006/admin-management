@@ -7,7 +7,7 @@ const app            = require("./init/my-app.js")();
 async function main(){
     initGlobal();
     try{
-        //await myDB.load();
+        await myDB.load();
         app.run();
         app.applyHttpReq('/test', 'get', 
             function(req, res){

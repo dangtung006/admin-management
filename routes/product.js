@@ -1,15 +1,15 @@
 const  { router }          = require("../init/my-app")();
-const BookController       = require("../controllers/book");
-const BookService          = require("../services/books.service");
+const ProductController    = require("../controllers/product");
+const ProductService       = require("../services/product.service");
 const BaseRouter           = require("./base");
 
 const viewConfigs    = {
 	'list' : {
-		pathView   : 'book/index',
+		pathView   : 'product/index',
 		pageData   : {
-			pageTitle : 'Books',
+			pageTitle : 'Products',
 			pageJs    : [],
-			pageTitle  : "Books"
+			pageTitle : "Products"
 		}
 	},
 
@@ -29,18 +29,20 @@ class BookRouter extends BaseRouter {
             router : router,
             views : viewConfigs,
             services : {
-                book : BookService
+                product : ProductService
             }
         })
 
         const { 
             renderList , 
-            renderAdd 
+            renderAdd ,
+            handleAdd
 
-        }  = BookController(this);
+        }  = ProductController(this);
 
-        this.router.get("/list", renderList);
-        this.router.post("/create", this.handleWraper(renderAdd));
+        this.router.get("/list", this.renderWrapper(renderList));
+        this.router.post("/create", this.handleWraper(handleAdd));
     }
 }
+
 module.exports = BookRouter
