@@ -10,6 +10,11 @@ const RouterList = [
     {
         'route' : '/product',
         'class'  : require('./product')
+    },
+
+    {
+        'route' : '/client',
+        'class'  : require('./client')
     }
 ]
 

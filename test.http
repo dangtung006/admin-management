@@ -65,3 +65,30 @@ Content-Type: application/json
         { "k" : "bao_hanh" ,     "v" : 12, "u" : "m"}
     ]
 }
+
+###
+GET http://localhost:3000/client/detail?id=63ac3e2e905f2b8e6fe21e36
+
+###
+POST http://localhost:3000/client/create
+Content-Type: application/json
+
+{
+    "name"            : "Nguyen Van A",
+    "address"         : "Hanoi",
+    "dateOfBirth"     : "2002-12-09"
+}
+
+###
+POST http://localhost:3000/client/save/payment_method
+Content-Type: application/json
+
+{
+    "id"            : "63ac3e2e905f2b8e6fe21e36",
+    "clientName"    : "Nguyen Van A",
+    "phone"         : "0915330567",
+    "cardId"        : "0xxxxx12424",
+    "qr"            : "",
+    "note"          : "Wifi Trong Nhà Góc Siêu Rộng",
+    "type"          : 1
+}
