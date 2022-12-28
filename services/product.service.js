@@ -9,8 +9,15 @@ class ProductService extends BaseService {
         });
     }
 
-    search(a){
-        
+    search(k, v){
+        return this.model.find({
+            "specs": {
+                $elemMatch: {
+                    k : k,
+                    v : v
+                }
+            }
+        });
     }
 }
 

@@ -5,7 +5,7 @@ const ProductSchema = new Schema({
     code           : { type : String},
     name           : { type : String, default : ""},
     description    : { type : String},
-    specs          : { type : Array, default : []},
+    specs          : { type : Array, default : []}, //array of object key value [ { k : "" , v: ""}]
     status         : { type : Number, default : 1},
     
     created_at     : { type : Date, default: Date.now },

@@ -38,12 +38,14 @@ class BookRouter extends BaseRouter {
             renderAdd ,
             handleAdd,
             handleEdit,
-            deleteOne
+            deleteOne,
+            search
 
         }  = ProductController(this);
 
         this.router.get("/list", this.handleWraper(renderList));
         this.router.get("/delete", this.handleWraper(deleteOne));
+        this.router.get("/search", this.handleWraper(search));
         this.router.post("/create", this.handleWraper(handleAdd));
         this.router.post("/edit", this.handleWraper(handleEdit));
     }

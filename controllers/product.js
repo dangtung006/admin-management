@@ -70,6 +70,15 @@ function ProductController(opt)  {
 			return {
 				result
 			}
+		},
+
+		async search(req, res){
+			let { k, v } = req.query;
+			if(k == "bao_hanh") v = parseInt(v);
+			let result = await ProductService.search( k, v );
+			return {
+				result
+			}
 		}
 	}
 }
