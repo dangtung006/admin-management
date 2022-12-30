@@ -15,6 +15,26 @@ const RouterList = [
     {
         'route' : '/client',
         'class'  : require('./client')
+    },
+
+    {
+        'route' : '/blog_cate',
+        'class'  : require('./blog_cate')
+    },
+
+    {
+        'route' : '/blog',
+        'class'  : require('./blog')
+    },
+
+    {
+        'route' : '/author',
+        'class'  : require('./author')
+    },
+
+    {
+        'route' : '/author_card',
+        'class'  : require('./authorCard')
     }
 ]
 

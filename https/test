@@ -92,3 +92,50 @@ Content-Type: application/json
     "note"          : "Wifi Trong Nhà Góc Siêu Rộng",
     "type"          : 1
 }
+###
+GET http://localhost:3000/blog_cate/list
+
+###
+POST http://localhost:3000/blog_cate/create
+Content-Type: application/json
+
+{
+    "name"         : "Sport",
+    "description"  : "Sportblog: The Guardian's blog on football, tennis, cricket and the latest sports stories",
+    "children"     : ["63aee2ca932efa9002bf8fa1"],
+    "author"       : "63aee25c932efa9002bf8f9c"
+}
+
+###
+GET http://localhost:3000/author/list
+
+###
+POST http://localhost:3000/author/create
+Content-Type: application/json
+
+{
+    "name"     : "Nguyen Van A",
+    "address"  : "Ha Noi",
+    "authorCard" : "63aee24d932efa9002bf8f99"
+}
+
+###
+POST http://localhost:3000/author_card/create
+Content-Type: application/json
+
+{
+    "code"     : "Oa001",
+    "expires"  : ""
+}
+
+###
+POST http://localhost:3000/blog/create
+Content-Type: application/json
+
+{
+    "title"        : "Talking Horses: A Plus Tard looking to bounce back in Savills Chase",
+    "description"  : "Three of the last four winners of the Savills Chase are back for another crack at the Grade One feature of Leopardstowns Christmas meeting on Wednesday, including A Plus Tard, last seasons hugely impressive Cheltenham Gold Cup winner, and Galvin, who touched him off by a short head in last years race.",
+    "slug"         : "",
+    "cate"         : "",
+    "author"       : ""
+}
