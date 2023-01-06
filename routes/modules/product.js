@@ -1,6 +1,6 @@
-const  { router }          = require("../init/my-app")();
-const ProductController    = require("../controllers/product");
-const ProductService       = require("../services/product.service");
+const  { router }          = require("../../init/my-app")();
+const ProductController    = require("../../controllers/product");
+const ProductService       = require("../../services/product.service");
 const BaseRouter           = require("./base");
 
 const viewConfigs    = {

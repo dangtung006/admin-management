@@ -1,7 +1,7 @@
-const  { router }          = require("../init/my-app")();
-const ClientController     = require("../controllers/client");
-const ClientService        = require("../services/client.service");
-const PaymentMethodService = require("../services/payment_methods.service");
+const  { router }          = require("../../init/my-app")();
+const ClientController     = require("../../controllers/client");
+const ClientService        = require("../../services/client.service");
+const PaymentMethodService = require("../../services/payment_methods.service");
 const BaseRouter           = require("./base");
 
 

@@ -1,5 +1,5 @@
-const { Handle, Render}    = require("../util/controller-helper");
-const { renderUrl }        = require("../util/paging-helper");
+const { Handle, Render}    = require("../../util/controller-helper");
+const { renderUrl }        = require("../../util/paging-helper");
 
 
 class BaseRouter {

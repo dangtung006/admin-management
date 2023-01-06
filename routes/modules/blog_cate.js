@@ -1,6 +1,6 @@
-const  { router }            = require("../init/my-app")();
-const BlogCateController     = require("../controllers/blog_categories");
-const BlogCateService        = require("../services/blog_cate.service");
+const  { router }            = require("../../init/my-app")();
+const BlogCateController     = require("../../controllers/blog_categories");
+const BlogCateService        = require("../../services/blog_cate.service");
 const BaseRouter             = require("./base");
 
 

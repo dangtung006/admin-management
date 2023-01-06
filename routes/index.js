@@ -1,40 +1,44 @@
-const RouterAccount        = require('./account');
 const { router }           = require("../init/my-app")();
 
 
 const RouterList = [
     {
         'route' : '/',
-        'class' : require("./main")
+        'class' : require("./modules/main")
     },
     {
         'route' : '/product',
-        'class'  : require('./product')
+        'class'  : require('./modules/product')
     },
 
     {
         'route' : '/client',
-        'class'  : require('./client')
+        'class'  : require('./modules/client')
     },
 
     {
         'route' : '/blog_cate',
-        'class'  : require('./blog_cate')
+        'class'  : require('./modules/blog_cate')
     },
 
     {
         'route' : '/blog',
-        'class'  : require('./blog')
+        'class'  : require('./modules/blog')
     },
 
     {
         'route' : '/author',
-        'class'  : require('./author')
+        'class'  : require('./modules/author')
     },
 
     {
         'route' : '/author_card',
-        'class'  : require('./authorCard')
+        'class'  : require('./modules/authorCard')
+    },
+
+    {
+        'route' : '/user',
+        'class'  : require('./modules/user')
     }
 ]
 

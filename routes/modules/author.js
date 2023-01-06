@@ -1,6 +1,6 @@
-const  { router }            = require("../init/my-app")();
-const AuthorController       = require("../controllers/author");
-const AuthorService          = require("../services/author.service");
+const  { router }            = require("../../init/my-app")();
+const AuthorController       = require("../../controllers/author");
+const AuthorService          = require("../../services/author.service");
 const BaseRouter             = require("./base");
 
 

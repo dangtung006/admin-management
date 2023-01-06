@@ -1,6 +1,6 @@
-const  { router }            = require("../init/my-app")();
+const  { router }            = require("../../init/my-app")();
 const BaseRouter             = require("./base");
-const MainController         = require("../controllers/main");
+const MainController         = require("../../controllers/main");
 
 const viewConfigs = {
     'list' : {
